@@ -7,8 +7,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  #storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -47,5 +47,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  CarrierWave.configure do |config|
+    config.fog_credentials = {
+      :provider                         => 'Google',
+      :google_storage_access_key_id     => ENV["google_storage_access_key_id"],
+      :google_storage_secret_access_key => ENV["google_storage_secret_access_key"]
+    }
+    config.fog_directory = ENV["fog_directory"]
+  end
 
 end
