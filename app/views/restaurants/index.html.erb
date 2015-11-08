@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <h2>En esta aplicación puedes encontrar los mejores restaurantes!!</h2>
   <p>Puedes realizar reseñas y calificar los restaurantes que conozcas, para que todos tus amigos las vean y también compartan sus opiniones.</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Crea tu Cuenta Gratuita</a></p>
+  <p><%= button_to "Crea tu Cuenta Gratuita", new_user_registration_path, :method => :get, class:"btn btn-primary btn-lg" %></p>
 </div>
 
 <p id="notice"><%= notice %></p>
