@@ -29,5 +29,27 @@
   <%= @restaurant.rate %>
 </p>
 
+<div class="panel panel-default">
+  <div class="panel-heading">Críticas</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Comentario</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.user_email %></td>
+        <td><%= review.comment %></td>
+        <td><%= review.raitng %></td>
+      </tr>
+      <% end %>
+  </table>
+</div>
+
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class:"btn btn-link"%> |
 <%= link_to 'Back', restaurants_path, class:"btn btn-link" %>
+<%= link_to 'Nueva Crítica', new_restaurant_review_path(@restaurant.id), class:"btn btn-link" %>
