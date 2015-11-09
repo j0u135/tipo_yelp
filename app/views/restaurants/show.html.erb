@@ -7,64 +7,66 @@
 <div class="row">
   
   <div class="col-md-3">
+    
     <%= image_tag @restaurant.image_url %>
-  </div>
   
-  <div class="col-md-9">
-    <p>
-      <strong>Name:</strong>
+    <h2>
       <%= @restaurant.name %>
-    </p>
+    </h2>
     
     <p>
-      <strong>Address:</strong>
+      <strong>Dirección:</strong>
       <%= @restaurant.address %>
     </p>
     
     <p>
-      <strong>Phone:</strong>
+      <strong>Teléfono:</strong>
       <%= @restaurant.phone %>
     </p>
     
     <p>
-      <strong>Website:</strong>
-      <%= @restaurant.website %>
+      <strong>Sitio Web:</strong>
+      <%= link_to @restaurant.website,  @restaurant.website, class: "btn btn-link" %>
     </p>
     
     <p>
-      <strong>Rate:</strong>
+      <strong>Calificación:</strong>
       <%= @restaurant.rate %>
     </p>
+  </div>
+  
+  <div class="col-md-9">
+    <% if @reviews.blank? %>
+      <h3>Se el primero en calificar este restaurante !!!</h3>
+    <% else %>
+      <div class="panel panel-default">
+        <div class="panel-heading">Críticas</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Comentario</th>
+              <th>Calificación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reviews.each do |review| %>
+            <tr>
+              <td><%= review.user_email %></td>
+              <td><%= review.comment %></td>
+              <td><%= review.raitng %></td>
+            </tr>
+            <% end %>
+        </table>
+      </div>
+    <% end %>
   </div>
   
 </div>
 
 
-
-
-<div class="panel panel-default">
-  <div class="panel-heading">Críticas</div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Usuario</th>
-        <th>Comentario</th>
-        <th>Rating</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @reviews.each do |review| %>
-      <tr>
-        <td><%= review.user_email %></td>
-        <td><%= review.comment %></td>
-        <td><%= review.raitng %></td>
-      </tr>
-      <% end %>
-  </table>
-</div>
-
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class:"btn btn-link"%> |
 <%= link_to 'Back', restaurants_path, class:"btn btn-link" %>
 <% if user_signed_in? %>
-  <%= link_to 'Nueva Crítica', new_restaurant_review_path(@restaurant.id), class:"btn btn-link" %>
+  <%= link_to 'Nueva Crítica', new_restaurant_review_path(@restaurant.id), class:"btn btn-primary" %>
 <% end %>
