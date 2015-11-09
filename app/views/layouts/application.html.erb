@@ -13,12 +13,16 @@
 </head>
 <body>
   <%= render 'layouts/navbar' %>
-  <p id="notice"><%= notice %></p>
-  <p id="alert"><%= alert %></p>
-
-  <div class="container-fluid">
-    <%= yield %>
-    <%= render 'layouts/footer' %>
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
+  
+    <div class="container-fluid">
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
   </div>
+  <div class="col-md-1"></div>
 </body>
 </html>

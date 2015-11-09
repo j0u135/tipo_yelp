@@ -1,33 +1,46 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <%= image_tag @restaurant.image_url %>
-</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
 
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @restaurant.phone %>
-</p>
 
-<p>
-  <strong>Website:</strong>
-  <%= @restaurant.website %>
-</p>
+<div class="row">
+  
+  <div class="col-md-3">
+    <%= image_tag @restaurant.image_url %>
+  </div>
+  
+  <div class="col-md-9">
+    <p>
+      <strong>Name:</strong>
+      <%= @restaurant.name %>
+    </p>
+    
+    <p>
+      <strong>Address:</strong>
+      <%= @restaurant.address %>
+    </p>
+    
+    <p>
+      <strong>Phone:</strong>
+      <%= @restaurant.phone %>
+    </p>
+    
+    <p>
+      <strong>Website:</strong>
+      <%= @restaurant.website %>
+    </p>
+    
+    <p>
+      <strong>Rate:</strong>
+      <%= @restaurant.rate %>
+    </p>
+  </div>
+  
+</div>
 
-<p>
-  <strong>Rate:</strong>
-  <%= @restaurant.rate %>
-</p>
+
+
 
 <div class="panel panel-default">
   <div class="panel-heading">Críticas</div>
@@ -52,4 +65,6 @@
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class:"btn btn-link"%> |
 <%= link_to 'Back', restaurants_path, class:"btn btn-link" %>
-<%= link_to 'Nueva Crítica', new_restaurant_review_path(@restaurant.id), class:"btn btn-link" %>
+<% if user_signed_in? %>
+  <%= link_to 'Nueva Crítica', new_restaurant_review_path(@restaurant.id), class:"btn btn-link" %>
+<% end %>
