@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field form-group">
-    <%= f.label :raitng %><br>
-    <%= f.text_field :raitng, class: "form-control"%>
+    <div id="star-rating"></div>
   </div>
   <div class="field form-group">
     <%= f.label :comment %><br>
@@ -23,3 +22,10 @@
     <%= f.submit  class:"btn btn-primary"%>
   </div>
 <% end %>
+
+<script>
+  $('#star-rating').raty({
+    path: 'https://storage.googleapis.com/imagestipoyelp/raty/images/',
+    scoreName: 'review[raitng]'
+  });
+</script>

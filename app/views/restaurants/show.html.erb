@@ -1,9 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-
-
-
-
 <div class="row">
   
   <div class="col-md-3">
@@ -31,7 +27,8 @@
     
     <p>
       <strong>Calificación:</strong>
-      <%= @restaurant.rate %>
+      <div class="star-rating" data-score="<%= @promedio_raiting %>"></div>
+      <p><%= @reviews.length %> críticas.</p>
     </p>
   </div>
   
@@ -52,7 +49,7 @@
             <% @reviews.each do |review| %>
             <tr>
               <td><%= review.user_email %></td>
-              <td><%= review.comment %><br><div class="star-rating" data-score="<%= review.raitng %>"></div></td>
+              <td><%= h(review.comment).gsub(/\n/, '<br/>').html_safe %><br><div class="star-rating" data-score="<%= review.raitng %>"></div></td>
               <td></td>
             </tr>
             <% end %>

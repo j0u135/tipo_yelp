@@ -11,8 +11,13 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-    @reviews = @restaurant.reviews.all
+    @reviews = @restaurant.reviews.all.order("created_at DESC")
     @review = @restaurant.reviews.new
+    if !@reviews.blank?
+      @promedio_raiting = @reviews.average(:raitng).round(2)
+    else
+      @promedio_raiting = 0;
+    end
   end
 
   # GET /restaurants/new
