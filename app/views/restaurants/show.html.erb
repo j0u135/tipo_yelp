@@ -39,22 +39,21 @@
     <% if @reviews.blank? %>
       <h3>Se el primero en calificar este restaurante !!!</h3>
     <% else %>
-      <div class="panel panel-default">
-        <div class="panel-heading">Críticas</div>
+      <div>
+        <h2>Críticas</h2>
         <table class="table">
           <thead>
             <tr>
               <th>Usuario</th>
               <th>Comentario</th>
-              <th>Calificación</th>
             </tr>
           </thead>
           <tbody>
             <% @reviews.each do |review| %>
             <tr>
               <td><%= review.user_email %></td>
-              <td><%= review.comment %></td>
-              <td><%= review.raitng %></td>
+              <td><%= review.comment %><br><div class="star-rating" data-score="<%= review.raitng %>"></div></td>
+              <td></td>
             </tr>
             <% end %>
         </table>
@@ -70,3 +69,13 @@
 <% if user_signed_in? %>
   <%= link_to 'Nueva Crítica', new_restaurant_review_path(@restaurant.id), class:"btn btn-primary" %>
 <% end %>
+
+<script>
+  $('.star-rating').raty({
+    path: 'https://storage.googleapis.com/imagestipoyelp/raty/images/',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>
