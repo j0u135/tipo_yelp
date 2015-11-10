@@ -1,6 +1,7 @@
 class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :is_admin,  only: [:new, :create, :edit, :update, :destroy]
   
   # GET /restaurants
   # GET /restaurants.json
@@ -73,6 +74,14 @@ class RestaurantsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_restaurant
       @restaurant = Restaurant.find(params[:id])
+    end
+    
+    def is_admin
+      if current_user.admin == true
+        true
+      else
+        redirect_to root_path, alert: "No tienes permitido realizar esta operación."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
