@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
          
   has_many :reviews, dependent: :destroy
+  
+  validates :name, :ap_paterno, presence: true, length: { minimum: 2 }
+
 end

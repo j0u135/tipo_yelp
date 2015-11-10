@@ -11,4 +11,7 @@ class Review < ActiveRecord::Base
     User.find(self.user_id).name
   end
   
+  validates :raitng, numericality: { only_integer: true }
+  validates :comment, length: { minimum: 2 }
+  
 end
