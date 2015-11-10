@@ -7,4 +7,8 @@ class Review < ActiveRecord::Base
     User.find(self.user_id).email
   end
   
+  def user_name
+    User.find(self.user_id).name
+  end
+  
 end
