@@ -19,8 +19,12 @@
     <p id="alert"><%= alert %></p>
   
     <div class="container-fluid">
-      <%= yield %>
-      <%= render 'layouts/footer' %>
+      <div class="row">
+        <%= yield %>
+      </div>
+      <div class="row">
+        <%= render 'layouts/footer' %>
+      </div>
     </div>
   </div>
   <div class="col-md-1"></div>
