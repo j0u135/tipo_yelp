@@ -1,0 +1,20 @@
+.barra-menu {
+  background-color: darksalmon;
+  color:white;
+}
+
+.jumbotron {
+  background-color: lavenderblush !important;
+}
+
+.navbar-default .navbar-brand {
+  color: white !important;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white !important;
+}
+
+.footer{
+  font-size: 10px;
+}

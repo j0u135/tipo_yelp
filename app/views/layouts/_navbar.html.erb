@@ -1,35 +1,37 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <%= link_to "App Tipo Yelp", root_path, class:"navbar-brand" %>
-    </div>
+  <div class="container-fluid barra-menu">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <div class="navbar-header">
+        <%= link_to "App Tipo Yelp", root_path, class:"navbar-brand" %>
+      </div>
+    
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if !user_signed_in? %>
+            <li><%= link_to "Ingresar", new_user_session_path %></li>
+            <li><%= link_to "Crear Cuenta", new_user_registration_path %></li>
+          <% end %>
   
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <% if !user_signed_in? %>
-          <li><%= link_to "Ingresar", new_user_session_path %></li>
-          <li><%= link_to "Crear Cuenta", new_user_registration_path %></li>
-        <% end %>
-
-        <% if user_signed_in? %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Editar Cuenta", edit_user_registration_path %></li>
-          </ul>
-        </li>
-        <% end %>
-
-        <li><%= link_to "Acerca de Nosotros", pages_about_path %></li>
-        <li><%= link_to "Contacto", pages_contact_path %>
-        
-        <% if user_signed_in? %>
-          <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %>
-        <% end %>
-
-      </ul>
-    </div><!-- /.navbar-collapse -->
+          <% if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Editar Cuenta", edit_user_registration_path %></li>
+            </ul>
+          </li>
+          <% end %>
+  
+          <li><%= link_to "Acerca de Nosotros", pages_about_path %></li>
+          <li><%= link_to "Contacto", pages_contact_path %>
+          
+          <% if user_signed_in? %>
+            <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %>
+          <% end %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div>
   </div><!-- /.container-fluid -->
 </nav>

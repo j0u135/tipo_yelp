@@ -2,6 +2,7 @@ class ReviewsController < ApplicationController
   before_action :set_restaurant
   before_action :set_review, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   # GET /reviews/new
   def new
@@ -34,7 +35,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to '#', notice: 'Review was successfully updated.' }
+        format.html { redirect_to restaurant_path(@restaurant), notice: 'Review was successfully updated.' }
         format.json { render '#', status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -48,13 +49,20 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to '#', notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to restaurant_path(@restaurant), notice: 'Review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def check_user
+      if @review.user_id == current_user.id
+        true
+      else
+        redirect_to root_path, alert: "Lo sentimos, este comentario pertenece a alguien mas."
+      end
+    end
+
     def set_review
       @review = Review.find(params[:id])
     end
