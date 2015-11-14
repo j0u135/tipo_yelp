@@ -27,3 +27,14 @@
 .jumbotron p {
     font-size: 16px !important;
 }
+
+.list_review{
+  height: 400px;
+  width: 100%;
+  overflow: auto;
+  margin-bottom: 20px;
+}
+
+.lista-interna{
+  margin-right:20px;
+}
