@@ -2,56 +2,45 @@
 
 <div class="row">
   
-  <div class="col-md-3">
+  <div class="col-md-4">
     
     <%= image_tag @restaurant.image_url %>
-  
-    <h2>
-      <%= @restaurant.name %>
-    </h2>
     
+    <div>
+      <h3>
+        <%= @restaurant.name %>
+      </h3>
+      <div class="star-rating" data-score="<%= @promedio_raiting %>"></div>
+      <p><%= @reviews.length %> reseñas.</p>
+    </div>
     <p>
       <strong>Dirección:</strong>
       <%= @restaurant.address %>
     </p>
-    
     <p>
       <strong>Teléfono:</strong>
       <%= @restaurant.phone %>
     </p>
-    
     <p>
       <strong>Sitio Web:</strong>
       <%= link_to @restaurant.website,  @restaurant.website, class: "btn btn-link" %>
     </p>
-    
-    <p>
-      <strong>Calificación:</strong>
-      <div class="star-rating" data-score="<%= @promedio_raiting %>"></div>
-      <p><%= @reviews.length %> críticas.</p>
-    </p>
   </div>
   
-  <div class="col-md-9">
+  <div class="col-md-8">
     <% if @reviews.blank? %>
       <h3>Se el primero en calificar este restaurante !!!</h3>
     <% else %>
       <div>
-        <h2>Críticas</h2>
+        <h2>Reseñas</h2>
         <table class="table">
-          <thead>
-            <tr>
-              <th>Usuario</th>
-              <th>Comentario</th>
-            </tr>
-          </thead>
           <tbody>
             <% @reviews.each do |review| %>
             <tr>
               <td><h4><%= review.user_name %></h4><%= review.created_at.strftime("%-m/%-d/%y") %></td>
+              <td><div class="star-rating" data-score="<%= review.raitng %>"></div></td>
               <td>
                 <%= h(review.comment).gsub(/\n/, '<br/>').html_safe %><br>
-                <div class="star-rating" data-score="<%= review.raitng %>"></div>
                   <% if user_signed_in?
                     if current_user.id == review.user_id %>
                       <p>
@@ -70,9 +59,9 @@
   
 </div>
 
-<%= link_to 'Back', restaurants_path, class:"btn btn-link" %>
+<%= link_to 'Regresar', restaurants_path, class:"btn btn-link" %>
 <% if user_signed_in? %>
-  <%= link_to 'Nueva Crítica', new_restaurant_review_path(@restaurant.id), class:"btn btn-primary" %>
+  <%= link_to 'Nueva Reseña', new_restaurant_review_path(@restaurant.id), class:"btn btn-primary" %>
 <% end %>
 
 <script>

@@ -1,9 +1,11 @@
-<div class="jumbotron">
-  <h2>Encuentra los mejores restaurantes!!</h2>
-  <p>Puedes realizar reseñas y calificar los restaurantes que conozcas, para que todos tus amigos las vean y también compartan sus opiniones.</p>
-  <% if !user_signed_in? %>
-    <p><%= button_to "Crea tu Cuenta Gratuita", new_user_registration_path, :method => :get, class:"btn btn-danger btn-lg" %></p>
-  <% end %>
+<div class="row">
+  <div class="jumbotron col-md-7">
+    <h3>Encuentra los mejores restaurantes!!</h3>
+    <p>Realiza reseñas y califica los restaurantes que conozcas, para que todos tus amigos las vean y también compartan sus opiniones.</p>
+    <% if !user_signed_in? %>
+      <p><%= button_to "Crea tu Cuenta Gratuita", new_user_registration_path, :method => :get, class:"btn btn-danger btn-lg" %></p>
+    <% end %>
+  </div>
 </div>
 
 <p id="notice"><%= notice %></p>
@@ -14,12 +16,11 @@
   <tbody>
     <% @restaurants.each do |restaurant| %>
       <tr>
-        <td><h4><%= restaurant.name %></h4></td>
+        <td><h4><%= link_to restaurant.name, restaurant %></h4></td>
         <% if restaurant.reviews.count > 0 %>
-          <td class="star-rating" data-score="<%= restaurant.average %>"></td>
+          <td><div class="star-rating" data-score="<%= restaurant.average %>"></div><%= restaurant.reviews.count %> reseñas</td>
           <td><q><%= restaurant.reviews.last.comment %></q></td>
         <% end %>
-        <td><%= link_to 'Ver Más', restaurant, class:"btn btn-link" %></td>
       </tr>
     <% end %>
   </tbody>
