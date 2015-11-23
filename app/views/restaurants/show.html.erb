@@ -1,11 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
-  
   <div class="col-md-4">
-    
     <%= image_tag @restaurant.image_url %>
-    
     <div>
       <h3>
         <%= @restaurant.name %>
@@ -65,11 +60,31 @@
     <div>
       <%= link_to 'Regresar', restaurants_path, class:"btn btn-link" %>
       <% if user_signed_in? %>
-        <%= link_to 'Nueva Reseña', new_restaurant_review_path(@restaurant.id), class:"btn btn-primary" %>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+          Nueva Reseña
+        </button>
       <% end %>
     </div>
   </div>
   
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Qué opinas de <%= @restaurant.name %>?</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'reviews/form' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>

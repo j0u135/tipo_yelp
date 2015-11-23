@@ -23,7 +23,9 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         format.html { redirect_to @restaurant, notice: 'Review was successfully created.' }
+        format.js   {}
       else
+        format.js   {}
         format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
