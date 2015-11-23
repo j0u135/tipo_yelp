@@ -3,6 +3,14 @@ class RestaurantsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :is_admin,  only: [:new, :create, :edit, :update, :destroy]
   
+  def search
+    if params[:search].present?
+      @restaurants = Restaurant.search(params[:search])
+    else
+      @restaurants = Restaurant.all
+    end
+  end
+  
   # GET /restaurants
   # GET /restaurants.json
   def index

@@ -8,6 +8,14 @@
     
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+          
+          <%= form_tag search_restaurants_path, method: :get, class:"navbar-form navbar-left" do  %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], class:"form-control", placeholder:"Buscar"%>
+            </div>
+            <%= submit_tag "Buscar", name: nil, class:"btn btn-default" %>
+          <% end %>
+          
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if !user_signed_in? %>
