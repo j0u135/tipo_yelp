@@ -1,4 +1,6 @@
 class Restaurant < ActiveRecord::Base
+  searchkick
+  
   has_many :reviews
   
   mount_uploader :image, ImageUploader
